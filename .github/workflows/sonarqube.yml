@@ -1,37 +1,53 @@
 name: SonarCloud Analysis
- 
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
- 
+
 jobs:
   sonarcloud:
     name: SonarCloud Scan
     runs-on: ubuntu-latest
- 
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
- 
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
- 
+
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
- 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
         with:
-          projectBaseDir: .
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build and analyze with SonarCloud
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed for PR decoration
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Token for SonarCloud authentication
+        # Before running sonar:sonar, you need to compile your project.
+        # 'verify' will compile, test, and package.
+        # Replace 'your_organization_key' and 'your_project_key' with your actual SonarCloud keys
+        # You can also define these sonar properties in your pom.xml
+        run: |
+          mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.organization=orgkeykankana \
+            -Dsonar.projectKey=kankanaaa_spring-sonarqube-demo \
+            -Dsonar.host.url=https://sonarcloud.io
