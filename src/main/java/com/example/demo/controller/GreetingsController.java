@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 public class GreetingsController {
 
     private final GreetingService greetingService;
-    int test;
 
     public GreetingsController(GreetingService greetingService) {
         this.greetingService = greetingService;
@@ -16,6 +15,7 @@ public class GreetingsController {
 
     @GetMapping("/{name}")
     public String greet(@PathVariable String name) {
+        System.out.println("Print statement");
         return greetingService.getGreeting(name);                // http://localhost:8080/api/greet/John
     }
     
