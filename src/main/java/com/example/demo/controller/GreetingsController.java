@@ -15,6 +15,7 @@ public class GreetingsController {
 
     @GetMapping("/{name}")
     public String greet(@PathVariable String name) {
+        System.out.println("Print statement");
         return greetingService.getGreeting(name);                // http://localhost:8080/api/greet/John
     }
     
