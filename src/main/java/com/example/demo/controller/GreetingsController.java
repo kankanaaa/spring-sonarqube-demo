@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class GreetingsController {
 
     private final GreetingService greetingService;
+    int test;
 
     public GreetingsController(GreetingService greetingService) {
         this.greetingService = greetingService;
