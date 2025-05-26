@@ -20,7 +20,6 @@ public class PolicyServiceTest {
     @Test
     public void testGetAllPolicies() {
         List<Policy> policies = policyService.getAllPolicies();
-        assertNotNull(policies);
         assertTrue(policies.size() >= 2);
     }
 
