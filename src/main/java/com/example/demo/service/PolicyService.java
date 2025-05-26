@@ -3,36 +3,42 @@ package com.example.demo.service;
 import com.example.demo.model.Policy;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.*;
 
 @Service
 public class PolicyService {
 
-    private static final Map<Integer, Policy> POLICY_MAP = new HashMap<>();
+    private final Map<Integer, Policy> policyMap = new HashMap<>();
 
-    static {
-        POLICY_MAP.put(1001, new Policy(1001, "Alice", "Health", 15000.0, LocalDate.now(), LocalDate.now().plusYears(1)));
-        POLICY_MAP.put(1002, new Policy(1002, "Bob", "Life", 20000.0, LocalDate.now(), LocalDate.now().plusYears(2)));
+    @PostConstruct
+    public void init() {
+        policyMap.put(1001, new Policy(1001, "Alice", "Health", 15000.0, LocalDate.now(), LocalDate.now().plusYears(1)));
+        policyMap.put(1002, new Policy(1002, "Bob", "Life", 20000.0, LocalDate.now(), LocalDate.now().plusYears(2)));
     }
 
     public List<Policy> getAllPolicies() {
-        return new ArrayList<>(POLICY_MAP.values());
+        return new ArrayList<>(policyMap.values());
     }
 
     public Policy getPolicyById(int id) {
-        return POLICY_MAP.get(id);
+        return policyMap.get(id);
     }
 
     public void addPolicy(Policy policy) {
-        POLICY_MAP.put(policy.getPolicyId(), policy);
+        policyMap.put(policy.getPolicyId(), policy);
     }
 
     public void updatePolicy(int id, Policy updatedPolicy) {
-        POLICY_MAP.put(id, updatedPolicy);
+        policyMap.put(id, updatedPolicy);
     }
 
     public void deletePolicy(int id) {
-        POLICY_MAP.remove(id);
+        policyMap.remove(id);
+    }
+
+    public void clearPolicies() {
+        policyMap.clear();
     }
 }
