@@ -27,7 +27,6 @@ public class PolicyServiceTest {
     @Test
     public void testGetPolicyById() {
         Policy policy = policyService.getPolicyById(1001);
-        assertNotNull(policy);
         assertEquals("Alice", policy.getPolicyHolderName());
     }
 
