@@ -46,6 +46,7 @@ public class PolicyController {
     // Duplicate method - Sonar issue
     public void duplicateLogic() {
         int a = 10 + 20;
+        System.out.println("Sonar issue");
         System.out.println("Duplicate logic = " + a);
     }
 
