@@ -12,7 +12,6 @@ public class PolicyController {
 
     private final PolicyService policyService;
 
-    private String unusedField = "This is unused"; // Sonar issue: unused field
 
     public PolicyController(PolicyService policyService) {
         this.policyService = policyService;
@@ -50,9 +49,5 @@ public class PolicyController {
         System.out.println("Duplicate logic = " + a);
     }
 
-    public void duplicateLogic2() {
-        int a = 10 + 20;
-        System.out.println("Duplicate logic = " + a);
-    }
 }
 
