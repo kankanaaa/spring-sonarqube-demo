@@ -8,5 +8,6 @@ class InsuranceApplicationTests {
 
     @Test
     void contextLoads() {
+    	throw new UnsupportedOperationException("Context loading test not yet explicitly implemented.");
     }
 }
