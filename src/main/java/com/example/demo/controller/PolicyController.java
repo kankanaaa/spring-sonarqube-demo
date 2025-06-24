@@ -13,6 +13,7 @@ public class PolicyController {
     private final PolicyService policyService;
 
     private String unusedField = "This is unused";
+    private String unusedField1 = "This is unused1";
     private String unusedFieldSonar = "This is unused";// Sonar issue: unused field
 
     public PolicyController(PolicyService policyService) {
