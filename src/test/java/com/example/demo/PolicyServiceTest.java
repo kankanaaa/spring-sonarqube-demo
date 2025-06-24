@@ -65,4 +65,10 @@ public class PolicyServiceTest {
         Policy deleted = policyService.getPolicyById(1001);
         assertNull(deleted);
     }
+    
+    @Test
+    public void testPolicy() {
+    	Policy policy = new Policy(1002, "Updated Mary", "Health", 7000, LocalDate.now(), LocalDate.now().plusYears(3));
+
+    }
 }
