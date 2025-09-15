@@ -26,38 +26,16 @@ public class PolicyService {
         return new ArrayList<>(policyMap.values());
     }
 
-    /**
-     * This method can throw a NullPointerException.
-     */
     public Policy getPolicyById(int id) {
-        // SONAR ISSUE (Bug): A "NullPointerException" could be thrown; the result of "policyMap.get(id)" should be checked for null.
-        System.out.println("Fetching policy holder: " + policyMap.get(id).getPolicyHolderName()); // This line will crash if id is not found.
-
-        // SONAR ISSUE (Code Smell): Using System.out or System.err is discouraged. Use a logger instead.
-        System.out.println("Operation complete for ID: " + id);
-
         return policyMap.get(id);
     }
 
     public void addPolicy(Policy policy) {
-        // This whole block is duplicated in updatePolicy
-        // SONAR ISSUE (Code Smell): This block of code is duplicated in the "updatePolicy" method.
-        if (policy.getPolicyHolderName() == "Default") { // SONAR ISSUE (Bug): Strings should be compared with ".equals()", not "==".
-            System.out.println("Cannot add policy for default user.");
-            return;
-        }
         policyMap.put(policy.getPolicyId(), policy);
     }
 
     public void updatePolicy(int id, Policy updatedPolicy) {
-        // SONAR ISSUE (Code Smell): The parameter "id" is unused. The method uses the ID from the policy object instead.
-        // This whole block is duplicated from addPolicy
-        // SONAR ISSUE (Code Smell): This block of code is duplicated from the "addPolicy" method.
-        if (updatedPolicy.getPolicyHolderName() == "Default") { // SONAR ISSUE (Bug): Strings should be compared with ".equals()", not "==".
-            System.out.println("Cannot update policy for default user.");
-            return;
-        }
-        policyMap.put(updatedPolicy.getPolicyId(), updatedPolicy);
+        policyMap.put(id, updatedPolicy);
     }
 
     public void deletePolicy(int id) {
