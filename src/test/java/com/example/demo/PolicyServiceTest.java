@@ -33,7 +33,7 @@ public class PolicyServiceTest {
     }
 
     @Test
-    public void testGetPolicyById() {
+    public void testGetPolicyById_1001() {
         Policy policy = policyService.getPolicyById(1001);
         assertNotNull(policy);
         assertEquals("Alice", policy.getPolicyHolderName());
