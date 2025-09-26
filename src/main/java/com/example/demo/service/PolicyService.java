@@ -19,6 +19,7 @@ public class PolicyService {
     }
 
     public List<Policy> getAllPolicies() {
+        System.out.println("This is a sonar issue");
         return new ArrayList<>(policyMap.values());
     }
 
