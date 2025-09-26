@@ -23,7 +23,6 @@ public class PolicyService {
     }
 
     public Policy getPolicyById(int id) {
-        System.out.println("This is a sonar issue");
         return policyMap.get(id);
     }
 
