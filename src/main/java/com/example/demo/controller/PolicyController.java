@@ -14,8 +14,6 @@ public class PolicyController {
 
     private String unusedField = "This is unused"; // Sonar issue: unused field
 
-    private String unusedField1 = "This is unused"; // Sonar issue: unused field
-
     public PolicyController(PolicyService policyService) {
         this.policyService = policyService;
     }
